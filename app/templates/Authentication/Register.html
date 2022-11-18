@@ -1,0 +1,38 @@
+{%extends "authentication/base.html"%}
+
+{% load static %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'css/registration.css' %}">
+{% endblock %}
+
+
+{% block content %}
+<div class="container">
+   
+    <h1 class="text-center">Pedalpal</h1>
+            <form action="" class="signup-form" method="post">
+                {% csrf_token %}
+                
+                 {% for field in form %}
+                 <div class="row">
+                  <div class="col-md-3"></div>
+                  <div class="col-md-7 mb-2">
+                    <span>{{ field.label }}:  {{ field }} </span>
+                  </div>
+                 {% endfor %}
+               </div>
+                 {{ form.errors }}
+                 <div class="row">
+                  <div class="col-md-4 mx-auto">
+                 <p>Have an account? <a href="{% url 'login' %} ">Log in</a></p>
+
+                 <input type="submit" name="submit" value="sign up" class="btn btn-secondary">
+               </div>
+               </div>
+            </form>
+
+</div>
+
+
+{% endblock %}

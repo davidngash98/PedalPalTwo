@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{%block content%}
+<div class="container">
+    
+    <div class="row">
+        <div class="col-md-2"></div>
+        {% for bike in bikes %}
+        <div class="card mt-4" style="width: 18rem;margin-right:4px;">
+            <img class="card-img-top" src="{{bike.bike_photo.url}}" alt="Card image cap">
+            <div class="card-body">
+              
+              <a href="{% url 'bike'%}" class="btn btn-dark" data-toggle="modal" data-target="#exampleModal" >Book</a>
+              <a href="{% url 'rate_project' bike.id%}" class="btn btn-warning">rate</a>
+            </div>
+          </div>
+          {%endfor%}
+    </div>
+    
+</div>
+
+{%endblock%}

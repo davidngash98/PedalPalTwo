@@ -1,0 +1,33 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-dark">
+  <a class="navbar-brand" href="/"><i class="fa fa-bicycle fa-2x" aria-hidden="true" style="color:red"></i></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'station' %}"  style="color:red">Stations</a>
+      </li>
+      
+      {% if user.is_authenticated %}
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'logout' %}"  style="color:red">Logout</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'profile' user.id%}"  style="color:red">Profile</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'bookings' user.id%}"  style="color:red">View Bookings</a>
+      </li>
+      {% else %}
+      
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'login' %}"  style="color:red">Login</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'register' %}"  style="color:red">Sign up</a>
+      </li>
+      {% endif %}
+    </ul>
+  </div>
+</nav>

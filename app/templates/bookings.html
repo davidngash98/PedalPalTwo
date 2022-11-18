@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{%block content%}
+
+{% for bike in bikes %}
+  
+  <h2>Duration: {{bike.duration}} Hours</h2>
+  <h2>Cost: Kes {{bike.total_cost}}</h2>
+{% endfor %}
+{%endblock%}

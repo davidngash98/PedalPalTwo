@@ -1,0 +1,18 @@
+{% block content %}
+<div class="containerElement">
+<div class="vertical-center">
+      <form action="" method="POST" id="form">
+        {% csrf_token %}
+          <div class="input-field">
+            
+             <span style="display:block; margin-top:4px; font-weight: bolder">rate ride - {{ ratingform.rate_ride }}</span>
+          </div>
+          <div class="input-field">
+             review - {{ ratingform.body }}
+          </div>
+
+          <button type="submit" class="btn btn-secondary">Rate</i</button>
+      </form>
+</div>
+</div>
+{% endblock %}

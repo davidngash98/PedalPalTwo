@@ -1,0 +1,36 @@
+{%extends "base.html"%}
+
+
+{% block content %}
+<h1 class="text-center">My profile</h1>
+
+<div class="container">
+    <div class="row">
+     <div class="col-md-4 mx-auto">
+        <div class="card" style="width: 24rem;">
+          {% if  profile.profile_photo %}
+            <img src="{{profile.profile_photo.url}}" alt="" srcset="">
+          {%else%}
+          <img src="https://media.istockphoto.com/id/1255787387/photo/people-walking-towards-mysterious-tunnels.jpg?b=1&s=170667a&w=0&k=20&c=XSEFnrJeyp6x0OUuDoIMf4i-5PAOi6BZi029t_maocs=" alt="" srcset="">
+          {% endif %}
+            <div class="card-body">
+              <h5 class="card-title" style="color:black">{{ user.username }}</h5>
+              <p class="card-text" style="color:black">{{ user.profile.bio }}</p>
+            <p class="card-text" style="color:black"> {{ profile.phone_number }}</p>
+         
+            <p class="card-text" style="color:black"> {{ profile.Id_number }}</p>
+            
+            </div>
+        </div>
+     </div>
+     <div class="col-md-2">
+      <a href="{% url 'edit' user.profile.id %}"><i class="fa fa-pencil fa-3x" aria-hidden="true" style="color:red"></i></a>
+     </div>
+    </div>
+    <div class="row">
+           
+           
+    </div>
+</div>
+
+{%endblock%}

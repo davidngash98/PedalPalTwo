@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{%block content%}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href={% static 'css/bootstrap.min.css' %}" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    </head>
+<body style="background-image:url('https://images.unsplash.com/photo-1571068316344-75bc76f77890?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OHx8YmljeWNsZXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60');background-size: cover;background-repeat: no-repeat;">
+    
+<header style="text-align:center;color:red">
+  {% for message in messages %}
+  <div class="alert alert-success" role="alert">
+    <h2>{{message}}</h2>
+   </div>
+   {% endfor %}
+
+    <h1><b>UNLOCK A BIKE</b></h1>
+    <h1><b>UNLOCK NAIROBI</b><span class="w3-xxxlarge"></span></h1>
+    
+  </header>
+</body>
+</html>
+
+{%endblock%}

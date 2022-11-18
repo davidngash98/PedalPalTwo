@@ -1,0 +1,23 @@
+{%extends "base.html"%}
+
+{% block content %}
+<div class="container">
+    <div class="row mt-5">
+        <col-md-3></col-md-3>
+        <div class="col-md-8 mx-auto">
+        <form action="" class="create-form" method="post" enctype=multipart/form-data>
+            {% csrf_token %}
+            <div class="create-form-title">
+                <h1 class="text-center">Edit Profile</h1>
+            </div>
+            <div class="create-form-image">
+                {{form.as_p}}
+            </div>
+            <div class="create-form-submit">
+                <button type="submit" class="btn btn-dark">Update</button>
+            </div>
+        </form>
+    </div>
+    </div>
+    </div>
+{%endblock%}
