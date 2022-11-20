@@ -1,10 +1,17 @@
 {% extends "base.html" %}
 
 {%block content%}
-
+<div class="container">
 {% for bike in bikes %}
+<div class="card mt-5">
+  <div class="card-body text-center">
+    <h2>Duration: {{bike.duration}} Hours</h2>
+    <h2>Cost: Kes {{bike.total_cost}}</h2>
+    <a href="{% url 'delete_booking' bike.id %}"><i class="fa-solid fa-trash fa-3x" style="color:red"></i></a>
+  </div>
+</div>
   
-  <h2>Duration: {{bike.duration}} Hours</h2>
-  <h2>Cost: Kes {{bike.total_cost}}</h2>
 {% endfor %}
+<a href="{% url 'confirm_booking'%}" class="btn btn-secondary mt-2">Confirm Booking</a>
+</div>
 {%endblock%}

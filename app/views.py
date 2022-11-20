@@ -1,16 +1,19 @@
 from django.conf import settings
 from django.contrib.auth import authenticate, login, logout
 from django.core.mail import send_mail
-from django.shortcuts import redirect, render
+from django.shortcuts import redirect, render,get_object_or_404,HttpResponseRedirect
 from django.urls import reverse_lazy
 from django.views.generic.edit import CreateView, UpdateView
 from django.contrib.auth.views import LoginView
 from django.contrib import messages
+from django.core.mail import send_mail
+import string
+import secrets
 
 
 
 from .forms import BookingForm, CreateProfileForm, RatingsForm, RegisterForm
-from .models import Bike, Booking, Profile, Station
+from .models import Bike, Booking, Profile, Station, CustomUser
 
 
 def register(request):
@@ -100,6 +103,45 @@ def bookings(request,id):
         "bikes":bikez,
     }
     return render(request,'bookings.html',context)
+
+def deleteBooking(request,id):
+    booking = get_object_or_404(Booking, id = id)
+    
+    if request.method =="POST":
+        booking.delete()
+        return HttpResponseRedirect("/")
+ 
+    return render(request, "delete_view.html", {})
+ 
+from  django.core.mail import EmailMessage
+from django.conf import settings
+from django.template.loader import render_to_string
+    
+def confirmBooking(request):
+    if request.method =="POST":
+        Booking.objects.all().delete()
+        return HttpResponseRedirect("/")
+    symbols = ['*', '%', '£'] # Can add more
+
+    password = ""
+    for _ in range(9):
+        password += secrets.choice(string.ascii_lowercase)
+    password += secrets.choice(string.ascii_uppercase)
+    password += secrets.choice(string.digits)
+    password += secrets.choice(symbols)
+    
+    template = render_to_string("email_template.html",{"name":request.user.username,"code":password})
+    
+    email = EmailMessage(
+        'Booking Confirmation',
+        template,
+        settings.EMAIL_HOST_USER,
+        [request.user.email],
+    )
+    email.fail_silently = False
+    email.send()
+    return render(request,"confirmbooking.html",{})
+
 def rate_project(request, id):
     bike =Bike.objects.get(id=id)
     user = request.user

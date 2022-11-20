@@ -68,3 +68,5 @@ class Booking(models.Model):
     @property
     def total_cost(self):
         return self.duration * 200
+    
+    
